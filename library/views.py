@@ -11,9 +11,15 @@ from .models import *
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = LibraryUser.objects.all()
-    serializer_class = UserSerialiser
     permission_classes = [IsAuthenticated]
     http_method_names = ['get', 'post']
+    
+    def get_serializer_class(self):
+        if self.action == 'list':
+            return UserInfoSerialiser
+        
+        if self.action == 'create':
+            return UserSerialiser
 
 
 
@@ -42,4 +48,23 @@ class BorrowedBooksViewSet(viewsets.ModelViewSet):
     serializer_class = UserBorrowedBookSerialiser
     permission_classes = [IsAuthenticated]
     http_method_names = ['get', 'post', 'put','delete']
+
+
+
+
+
+class SubmitBookViewSet(viewsets.ModelViewSet):
+    queryset = BorrowedBook.objects.all()
+    serializer_class = BorrowedBooksSerialiser
+    permission_classes = [IsAuthenticated]
+    http_method_names = ['delete','get']
+
+
+    def destroy(self,request,pk): 
+        try:
+            borrowed_book = BorrowedBook.objects.get(pk=pk)
+            borrowed_book.delete()
+            return HttpResponse(status=status.HTTP_204_NO_CONTENT)
+        except BorrowedBook.DoesNotExist:
+            return HttpResponse(status=status.HTTP_404_NOT_FOUND)
 
