@@ -1,30 +1,40 @@
+from django.db.models.expressions import fields
 from rest_framework import serializers
-from .models import LibraryUser,GenreModel,BookModel,BookDetailsModel,BorrowedBooks
-
-class LibraryUserSerialiser(serializers.Serializer): 
-   class Meta:
-      model = LibraryUser
-      fields = ['id', 'username', 'email', 'password']
+from .models import LibraryUser,Genre,Book,BookDetail,BorrowedBook,UserBorrowedBook
 
 
-class GenreSerialiser(serializers.Serializer): 
-   class Meta:
-      model = GenreModel
-      fields = ['GenreName'] 
-
-class BookSerialiser(serializers.Serializer): 
-   class Meta:
-      model = BookModel
-      fields = ['BookID','Title','ISBN','PublishedDate','Genre']
-
-class BookDetailsSerialiser(serializers.Serializer):
+class UserSerialiser(serializers.ModelSerializer):
     class Meta:
-        model = BookDetailsModel
-        fields = ['DetailsID','BookID','NumberOfPages','Publisher','Language']
+        model = LibraryUser
+        fields = '__all__' 
 
-class BorrowedBooksSerialiser(serializers.Serializer):
+class GenreSerialiser(serializers.Serializer):
+   genre_name = serializers.CharField(max_length=100)
+   class Meta:
+      model = Genre
+      fields = '__all__'
+
+class BookSerialiser(serializers.ModelSerializer): 
+    genre = GenreSerialiser(many=True)
     class Meta:
-        model = BorrowedBooks
-        fields = ['BookID','BurrowedDate','ReturnDate']
+      model = Book
+      fields = '__all__'
 
+class BookDetailsSerialiser(serializers.ModelSerializer):
+    class Meta:
+        model = BookDetail
+        fields ='__all__'
+
+class BorrowedBooksSerialiser(serializers.ModelSerializer):
+    class Meta:
+        model = BorrowedBook
+        fields =   '__all__' 
+
+
+class UserBorrowedBookSerialiser(serializers.ModelSerializer):
+    burrowed_books = BorrowedBooksSerialiser(many=True)
+    class Meta:
+        model = UserBorrowedBook
+        fields =   '__all__'
+        
 

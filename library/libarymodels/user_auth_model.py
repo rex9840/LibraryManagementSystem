@@ -1,4 +1,3 @@
-from .books import BorrowedBooks
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser,BaseUserManager
 
@@ -40,7 +39,6 @@ class LibraryUser(AbstractBaseUser):
     email = models.EmailField(max_length=255,unique=True)
     username = models.CharField(max_length=255,unique=True)
     password = models.CharField(max_length=16)
-    borrowed_books = models.ManyToManyField(BorrowedBooks,blank=True)
     is_active = models.BooleanField(default=True)
     membership_date = models.DateTimeField(auto_now_add=True)
     is_admin = models.BooleanField(default=False)

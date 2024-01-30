@@ -8,39 +8,38 @@ from rest_framework.permissions import IsAuthenticated,AllowAny
 from .serialiser import *
 from .models import *
 
-# Create your views here.
-
 
 class UserViewSet(viewsets.ModelViewSet):
-    serializer_class = LibraryUserSerialiser
     queryset = LibraryUser.objects.all()
+    serializer_class = UserSerialiser
     permission_classes = [IsAuthenticated]
+    http_method_names = ['get', 'post']
+
 
 
 class GenreViewSet(viewsets.ModelViewSet):
+    queryset = Genre.objects.all()
     serializer_class = GenreSerialiser
-    queryset = GenreModel.objects.all()
     permission_classes = [IsAuthenticated]
+    http_method_names = ['get', 'post']
 
-class BookViewSet(viewsets.ModelViewSet): 
+
+class BookViewSet(viewsets.ModelViewSet):
+    queryset = Book.objects.all()
     serializer_class = BookSerialiser
-    queryset = BookModel.objects.all()
     permission_classes = [IsAuthenticated]
+    http_method_names = ['get', 'post', 'put','delete']
 
 
 class BookDetailsViewSet(viewsets.ModelViewSet): 
+    queryset = BookDetail.objects.all()    
     serializer_class = BookDetailsSerialiser
-    queryset = BookDetailsModel.objects.all()
     permission_classes = [IsAuthenticated]
-
+    http_method_names = ['get', 'post', 'put','delete']
 
 class BorrowedBooksViewSet(viewsets.ModelViewSet):
-    serializer_class = BorrowedBooksSerialiser
-    queryset = BorrowedBooks.objects.all()
+    queryset = UserBorrowedBook.objects.all()
+    serializer_class = UserBorrowedBookSerialiser
     permission_classes = [IsAuthenticated]
-
-
-
-
-
+    http_method_names = ['get', 'post', 'put','delete']
 
