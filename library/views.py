@@ -15,12 +15,11 @@ class UserViewSet(viewsets.ModelViewSet):
     http_method_names = ['get', 'post']
     
     def get_serializer_class(self):
-        if self.action == 'list':
+        if self.request.method == 'GET':
             return UserInfoSerialiser
         
-        if self.action == 'create':
+        if self.request.method == 'POST':
             return UserSerialiser
-
 
 
 class GenreViewSet(viewsets.ModelViewSet):

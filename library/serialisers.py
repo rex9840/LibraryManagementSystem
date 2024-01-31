@@ -12,9 +12,8 @@ class UserSerialiser(serializers.ModelSerializer):
         fields = ['id','username', 'email','password','membership_date','is_staff','is_admin']
 
 
-
-
 class UserInfoSerialiser(serializers.ModelSerializer):
+    id = serializers.IntegerField()
     class Meta:
         model  = LibraryUser
         fields = ['id','username', 'email','membership_date']
