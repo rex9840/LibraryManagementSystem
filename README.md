@@ -21,12 +21,12 @@ This is a Library Management System built with Django as the backend API service
 1. Run the development server:
    - ``poetry run python manage.py runserver``
 2. Accessing the API endpoints through the following URLs:
-- User: [http://127.0.0.1:8000/api/user/](http://127.0.0.1:8000/api/user/)
-- Genre: [http://127.0.0.1:8000/api/genre/](http://127.0.0.1:8000/api/genre/)
-- Book: [http://127.0.0.1:8000/api/book/](http://127.0.0.1:8000/api/book/)
+- Users: [http://127.0.0.1:8000/api/users/](http://127.0.0.1:8000/api/users/)
+- Genres: [http://127.0.0.1:8000/api/genres/](http://127.0.0.1:8000/api/genres/)
+- Books: [http://127.0.0.1:8000/api/books/](http://127.0.0.1:8000/api/books/)
 - Book Details: [http://127.0.0.1:8000/api/bookdetails/](http://127.0.0.1:8000/api/bookdetails/)
 - Borrowed Books: [http://127.0.0.1:8000/api/borrowedbooks/](http://127.0.0.1:8000/api/borrowedbooks/)
-- Submit Book: [http://127.0.0.1:8000/api/submitbook/](http://127.0.0.1:8000/api/submitbook/)
+- Submit Borrowed Book: [http://127.0.0.1:8000/api/submitborrowedbook/](http://127.0.0.1:8000/api/submitborrowedbook/)
 3. **Alternetly** , one can use the admin site to make some changes into the enpoints
   - Admin : [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
   - Email : `admin@test.com` ,  password : `admin`
