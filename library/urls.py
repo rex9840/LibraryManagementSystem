@@ -1,6 +1,6 @@
 from django.urls import path,include
 from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
-from .router import route_url
+from .routers import route_url
 
 
 
