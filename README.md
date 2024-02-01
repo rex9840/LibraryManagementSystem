@@ -15,6 +15,7 @@ This is a Library Management System built with Django as the backend API service
    -  ``poetry install``
 3. Set up the database:
    - ``poetry run python manage.py migrate``
+   - since the databease is preconfigured and is provided into the repo the step can be skipped 
   
 
 ## Usage
