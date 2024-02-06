@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractBaseUser,BaseUserManager
 
 class LibraryUserManager(BaseUserManager):
     
-    def create_user(self, email,username,password=None,burrowed_books=None):
+    def create_user(self, email,username,password=None):
         if not email: 
             raise ValueError("Email is required")
         if not username:
@@ -12,7 +12,6 @@ class LibraryUserManager(BaseUserManager):
         user = self.model(
             email = self.normalize_email(email),
             username = username,
-            burrowed_books = burrowed_books,
         )   
         user.password = password
         user.save(using=self._db)
